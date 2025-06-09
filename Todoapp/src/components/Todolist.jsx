@@ -1,13 +1,20 @@
-import ToDotItem from "./Todoitem";
+import TodoItem from "./ItemTodo";
+import style from "./Todolist.module.css";
 const ToDoList = (props) => {
-  const { todos } = props;
+  const { todos, setTodos } = props;
   return (
     <>
-      <div>
-        {" "}
-        {todos.map((item) => (
-          <ToDotItem key={item} item={item} />
-        ))}
+      <div className={style.listitem}>
+        {todos
+          .filter((item) => item && item.name && item.name.trim() !== "")
+          .map((item) => (
+            <TodoItem
+              key={item.name}
+              item={item}
+              todos={todos}
+              setTodos={setTodos}
+            />
+          ))}
       </div>
     </>
   );

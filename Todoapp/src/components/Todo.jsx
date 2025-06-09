@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ToDotItem from "./Todoitem";
+import Todoitem from "./ItemTodo";
 import Form from "./Form";
 import ToDoList from "./Todolist";
 /** @param {Event} e */
@@ -9,7 +9,7 @@ const Todo = () => {
     <>
       <div>
         <Form todos={todos} setTodos={setTodos} />
-        <ToDoList todos={todos} />
+        <ToDoList todos={todos} setTodos={setTodos} />
       </div>
     </>
   );

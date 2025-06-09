@@ -1,12 +1,14 @@
 import { useState } from "react";
 import style from "./From.module.css";
 const Form = (props) => {
-  const { todos } = props;
-  const { setTodos } = props;
-  const [todo, setTodo] = useState("");
+  const { todos, setTodos } = props;
+  // const [todo, setTodo] = useState();
+  const [todo, setTodo] = useState({ name: "", done: false });
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!todo.name.trim()) return;
     setTodos([...todos, todo]);
+    setTodo({ name: "", done: false });
   };
 
   return (
@@ -15,8 +17,8 @@ const Form = (props) => {
         <div className={style.inputContainer}>
           <input
             className={style.ModernInput}
-            onChange={(e) => setTodo(e.target.value)}
-            value={todo}
+            onChange={(e) => setTodo({ name: e.target.value, done: false })}
+            value={todo.name}
             type="text"
             placeholder="enter to do item"
           />
