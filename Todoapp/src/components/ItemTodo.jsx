@@ -8,18 +8,20 @@ const TodoItem = (props) => {
     setTodos(todos.filter((todo) => todo !== item));
   };
   const handleClick = (name) => {
-    const newArray = todos.map((todo) =>
-      todos.name == name ? { ...todo, done: !todo.done } : todo
+    setTodos(
+      todos.map((todo) =>
+        todo.name === name ? { ...todo, done: !todo.done } : todo
+      )
     );
-    setTodos(newArray);
     console.log(todos);
   };
+  const Style = item && item.done ? style.completed : "";
 
   return (
     <>
       <div className={style.item}>
         <div className={style.itemName}>
-          <span onClick={() => handleClick(item.name)}>
+          <span className={Style} onClick={() => handleClick(item.name)}>
             {item && item.name ? item.name : ""}
           </span>
 
