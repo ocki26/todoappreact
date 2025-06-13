@@ -2,19 +2,22 @@ import TodoItem from "./ItemTodo";
 import style from "./Todolist.module.css";
 const ToDoList = (props) => {
   const { todos, setTodos } = props;
+  const sortToDos = todos
+    .slice()
+    .sort((a, b) => Number(a.done) - Number(b.done));
   return (
     <>
       <div className={style.listitem}>
-        {todos
-          .filter((item) => item && item.name && item.name.trim() !== "")
-          .map((item) => (
+        {sortToDos.map((item, index) =>
+          item && typeof item === "object" && "name" in item ? (
             <TodoItem
-              key={item.name}
+              key={index}
               item={item}
               todos={todos}
               setTodos={setTodos}
             />
-          ))}
+          ) : null
+        )}
       </div>
     </>
   );

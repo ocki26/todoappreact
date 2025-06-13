@@ -16,13 +16,14 @@ const TodoItem = (props) => {
     console.log(todos);
   };
   const Style = item && item.done ? style.completed : "";
+  if (!item || typeof item !== "object" || !("name" in item)) return null;
 
   return (
     <>
       <div className={style.item}>
         <div className={style.itemName}>
           <span className={Style} onClick={() => handleClick(item.name)}>
-            {item && item.name ? item.name : ""}
+            {item?.name}
           </span>
 
           <span>
